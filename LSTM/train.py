@@ -108,8 +108,13 @@ print("\nMacro F1 Score:", macro_f1)
 print("\nClassification Report:\n")
 print(classification_report(y_test_enc,y_pred,target_names=preprocessor.label_encoder.classes_))
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+images_dir = os.path.join(base_dir, "images")
+models_dir = os.path.join(base_dir, "saved_model")
 
-# Confusion Matrix
+os.makedirs(images_dir, exist_ok=True)
+os.makedirs(models_dir, exist_ok=True)
+
 cm = confusion_matrix(y_test_enc, y_pred)
 
 plt.figure(figsize=(10, 8))
@@ -124,9 +129,9 @@ plt.xlabel("Predicted")
 plt.ylabel("Actual")
 plt.title("Confusion Matrix")
 plt.tight_layout()
-plt.savefig("confusion_matrix.png")
-plt.show()
 
+plt.savefig(os.path.join(images_dir, "confusion_matrix.png"))
+plt.show()
 
 # Training Plots
 plt.figure()
@@ -134,7 +139,8 @@ plt.plot(history.history["loss"], label="Train Loss")
 plt.plot(history.history["val_loss"], label="Val Loss")
 plt.legend()
 plt.title("Loss Curve")
-plt.savefig("loss_curve.png")
+# Save to the images folder
+plt.savefig(os.path.join(images_dir, "loss_curve.png"))
 plt.show()
 
 plt.figure()
@@ -142,24 +148,19 @@ plt.plot(history.history["accuracy"], label="Train Accuracy")
 plt.plot(history.history["val_accuracy"], label="Val Accuracy")
 plt.legend()
 plt.title("Accuracy Curve")
-plt.savefig("accuracy_curve.png")
+# Save to the images folder
+plt.savefig(os.path.join(images_dir, "accuracy_curve.png"))
 plt.show()
 
 # Saving Model
-os.makedirs("saved_model", exist_ok=True)
-model.save("saved_model/bilstm_model.h5")
+# Save to the saved_model folder
+model.save(os.path.join(models_dir, "bilstm_model.h5"))
 import pickle
-with open("saved_model/tokenizer.pkl", "wb") as f:
+with open(os.path.join(models_dir, "tokenizer.pkl"), "wb") as f:
     pickle.dump(preprocessor.tokenizer, f)
 
-with open("saved_model/label_encoder.pkl", "wb") as f:
+with open(os.path.join(models_dir, "label_encoder.pkl"), "wb") as f:
     pickle.dump(preprocessor.label_encoder, f)
 
-print("\nModel and preprocessors saved successfully.")
-
-
-
-
-
-
-
+print(f"\nModel and preprocessors saved successfully in: {models_dir}")
+print(f"Images saved successfully in: {images_dir}")

@@ -19,6 +19,7 @@ def build_model(vocab_size, embedding_dim, max_len, num_classes, lstm_units=64,b
     ])
     model.compile(loss='sparse_categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
     return model
+    
 
 def compute_class_weights(y_train):
     classes = np.unique(y_train)
