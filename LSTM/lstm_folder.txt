@@ -1,0 +1,45 @@
+bilstm :
+
+    Macro F1 Score: 0.7869935138889367
+
+    Classification Report:
+
+                            precision    recall  f1-score   support
+
+    Child Sexual Exploitation       1.00      1.00      1.00         2
+                    Elections       0.67      1.00      0.80         2
+        Non-Violent Crimes       0.71      0.67      0.69       104
+                        Safe       0.88      0.83      0.85       441
+        Sex-Related Crimes       1.00      0.50      0.67         2
+        Suicide & Self-Harm       1.00      1.00      1.00         2
+            Unknown S-Type       0.53      0.70      0.60        43
+            Violent Crimes       0.83      0.84      0.84       347
+                    unsafe       0.57      0.72      0.63        71
+
+                    accuracy                           0.80      1014
+                    macro avg       0.80      0.81      0.79      1014
+                weighted avg       0.81      0.80      0.81      1014
+
+dual input bilstm :
+    Macro F1 Score: 0.6661804661804661
+
+    Classification Report:
+
+                            precision    recall  f1-score   support
+
+    Child Sexual Exploitation       0.67      0.67      0.67         3
+                    Elections       0.67      0.67      0.67         3
+        Non-Violent Crimes       1.00      1.00      1.00        21
+                        Safe       0.92      0.62      0.74        88
+        Sex-Related Crimes       0.25      0.33      0.29         3
+        Suicide & Self-Harm       1.00      0.33      0.50         3
+            Unknown S-Type       0.08      0.38      0.13         8
+            Violent Crimes       1.00      1.00      1.00        70
+                    unsafe       1.00      1.00      1.00        15
+
+                    accuracy                           0.79       214
+                    macro avg       0.73      0.67      0.67       214
+                weighted avg       0.91      0.79      0.84       214
+    note: didn't perform better but probably due to small number of data
+    
+
