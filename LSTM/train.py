@@ -70,7 +70,7 @@ print(f"Vocab Size: {vocab_size} | Classes: {num_classes}")
 # Model
 model = build_dual_input_model(
     vocab_size=vocab_size,
-    embedding_dim=100,
+    embedding_dim=256,
     max_len_query=preprocessor.max_len,
     max_len_image=preprocessor.max_len,
     num_classes=num_classes,
